@@ -9,7 +9,7 @@ class Carrot2
     @endpoint = endpoint
   end
 
-  def cluster(documents)
+  def cluster(documents, opts = {})
     xml = Builder::XmlMarkup.new
     xml.instruct! :xml, :version=>"1.0", :encoding=>"UTF-8"
     xml.searchresult do |s|
@@ -24,9 +24,10 @@ class Carrot2
       "dcs.output.format" => "JSON",
       "dcs.clusters.only" => true,
       "dcs.c2stream" => xml.target!,
+      "MultilingualClustering.defaultLanguage" => opts[:language] || "ENGLISH",
       :multipart => true
     }
-    response = RestClient.post @endpoint, params
+    response = RestClient.post(@endpoint, params){|response, request, result| response }
     if response.code == 200
       JSON.parse(response.body)
     else
