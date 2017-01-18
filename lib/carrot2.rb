@@ -4,8 +4,11 @@ require "rest-client"
 require "json"
 
 class Carrot2
-  def initialize(endpoint = nil, url: "http://localhost:8080/dcs/rest")
-    @endpoint = endpoint || url
+  def initialize(url: nil)
+    @url = url || ENV["CARROT2_URL"] || "http://localhost:8080/dcs/rest"
+
+    # add dcs/rest if needed
+    @url = "#{@url.sub(/\/\z/, "")}/dcs/rest" unless @url.include?("dcs/rest")
   end
 
   def cluster(documents, opts = {})
@@ -24,9 +27,9 @@ class Carrot2
       "dcs.clusters.only" => true,
       "dcs.c2stream" => xml.target!,
       "MultilingualClustering.defaultLanguage" => opts[:language] || "ENGLISH",
-      :multipart => true
+      multipart: true
     }
-    response = RestClient.post(@endpoint, params) { |response, request, result| response }
+    response = RestClient.post(@url, params) { |response, request, result| response }
     if response.code == 200
       JSON.parse(response.body)
     else

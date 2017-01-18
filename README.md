@@ -64,7 +64,7 @@ returns
 
 Documents are numbered in the order provided, starting with 0.
 
-To specify the Carrot2 url, use:
+To specify the Carrot2 url, set `ENV["CARROT2_URL"]` or use:
 
 ```ruby
 carrot2 = Carrot2.new(url: "http://localhost:8080/dcs/rest")
@@ -74,13 +74,15 @@ carrot2 = Carrot2.new(url: "http://localhost:8080/dcs/rest")
 
 Carrot2 can be easily deployed to Heroku thanks to support for [WAR deployment](https://devcenter.heroku.com/articles/war-deployment).
 
-Download the latest `.war` file [from here](https://github.com/carrot2/carrot2/releases) and run:
+You can find the `.war` file in the `war` directory in the dsc download. Then run:
 
 ```sh
 heroku plugins:install heroku-cli-deploy
 heroku create <app_name>
-heroku war:deploy carrot2-webapp-3.15.0.war --app <app_name>
+heroku war:deploy carrot2-dcs.war --app <app_name>
 ```
+
+And set `ENV["CARROT2_URL"]` in your application.
 
 ## History
 
