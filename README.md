@@ -70,6 +70,18 @@ To specify the Carrot2 url, use:
 carrot2 = Carrot2.new(url: "http://localhost:8080/dcs/rest")
 ```
 
+## Heroku
+
+Carrot2 can be easily deployed to Heroku thanks to support for [WAR deployment](https://devcenter.heroku.com/articles/war-deployment).
+
+Download the latest `.war` file [from here](https://github.com/carrot2/carrot2/releases) and run:
+
+```sh
+heroku plugins:install heroku-cli-deploy
+heroku create <app_name>
+heroku war:deploy carrot2-webapp-3.15.0.war --app <app_name>
+```
+
 ## History
 
 View the [changelog](https://github.com/ankane/carrot2/blob/master/CHANGELOG.md)
