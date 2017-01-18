@@ -1,14 +1,20 @@
 # Carrot2
 
-Ruby client for Carrot2 - the **awesome** open-source document clustering server
+Ruby client for [Carrot2](http://project.carrot2.org/) - the open-source document clustering server
+
+## Installation
+
+Add this line to your application’s Gemfile:
+
+```ruby
+gem 'carrot2'
+```
 
 ## Usage
 
 Download and run the Carrot2 server. [Great instructions here](http://project.carrot2.org/download-dcs.html)
 
 ```ruby
-require "carrot2"
-
 documents = [
   "Sign up for an exclusive coupon.",
   "Exclusive members get a free coupon.",
@@ -64,10 +70,15 @@ To specify the Carrot2 endpoint, use
 carrot2 = Carrot2.new("http://localhost:8080/dcs/rest") # default
 ```
 
+## History
+
+View the [changelog](https://github.com/ankane/carrot2/blob/master/CHANGELOG.md)
+
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Everyone is encouraged to help improve this project. Here are a few ways you can help:
+
+- [Report bugs](https://github.com/ankane/carrot2/issues)
+- Fix bugs and [submit pull requests](https://github.com/ankane/carrot2/pulls)
+- Write, clarify, or fix documentation
+- Suggest or add new features
