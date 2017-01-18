@@ -5,10 +5,10 @@ require "json"
 
 class Carrot2
   def initialize(url: nil)
-    @url = url || ENV["CARROT2_URL"] || "http://localhost:8080/dcs/rest"
+    @url = url || ENV["CARROT2_URL"] || "http://localhost:8080"
 
-    # add dcs/rest if needed
-    @url = "#{@url.sub(/\/\z/, "")}/dcs/rest" unless @url.include?("dcs/rest")
+    # add dcs/rest
+    @url = "#{@url.sub(/\/\z/, "")}/dcs/rest"
   end
 
   def cluster(documents, opts = {})

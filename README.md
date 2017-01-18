@@ -67,7 +67,7 @@ Documents are numbered in the order provided, starting with 0.
 To specify the Carrot2 url, set `ENV["CARROT2_URL"]` or use:
 
 ```ruby
-carrot2 = Carrot2.new(url: "http://localhost:8080/dcs/rest")
+carrot2 = Carrot2.new(url: "http://localhost:8080")
 ```
 
 ## Heroku
