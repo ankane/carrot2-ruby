@@ -4,8 +4,8 @@ require "rest-client"
 require "json"
 
 class Carrot2
-  def initialize(endpoint = "http://localhost:8080/dcs/rest")
-    @endpoint = endpoint
+  def initialize(endpoint = nil, url: "http://localhost:8080/dcs/rest")
+    @endpoint = endpoint || url
   end
 
   def cluster(documents, opts = {})

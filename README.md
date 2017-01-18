@@ -4,15 +4,15 @@ Ruby client for [Carrot2](http://project.carrot2.org/) - the open-source documen
 
 ## Installation
 
-Add this line to your application’s Gemfile:
+First, [download and run](http://project.carrot2.org/download-dcs.html) the Carrot2 server.
+
+Then add this line to your application’s Gemfile:
 
 ```ruby
 gem 'carrot2'
 ```
 
 ## Usage
-
-Download and run the Carrot2 server. [Great instructions here](http://project.carrot2.org/download-dcs.html)
 
 ```ruby
 documents = [
@@ -64,10 +64,10 @@ returns
 
 Documents are numbered in the order provided, starting with 0.
 
-To specify the Carrot2 endpoint, use
+To specify the Carrot2 url, use:
 
 ```ruby
-carrot2 = Carrot2.new("http://localhost:8080/dcs/rest") # default
+carrot2 = Carrot2.new(url: "http://localhost:8080/dcs/rest")
 ```
 
 ## History
