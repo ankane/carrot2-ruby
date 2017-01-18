@@ -74,7 +74,7 @@ carrot2 = Carrot2.new(url: "http://localhost:8080/dcs/rest")
 
 Carrot2 can be easily deployed to Heroku thanks to support for [WAR deployment](https://devcenter.heroku.com/articles/war-deployment).
 
-You can find the `.war` file in the `war` directory in the dsc download. Then run:
+You can find the `.war` file in the `war` directory in the dcs download. Then run:
 
 ```sh
 heroku plugins:install heroku-cli-deploy
