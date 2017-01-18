@@ -6,10 +6,10 @@ Gem::Specification.new do |gem|
   gem.email         = ["andrew@chartkick.com"]
   gem.description   = "Ruby client for Carrot2"
   gem.summary       = "Ruby client for Carrot2"
-  gem.homepage      = "https://github.com/ankane/carrot2-rb"
+  gem.homepage      = "https://github.com/ankane/carrot2"
 
   gem.files         = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
-  gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
+  gem.executables   = gem.files.grep(%r{^exe/}).map { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "carrot2"
   gem.require_paths = ["lib"]
@@ -17,4 +17,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "builder"
   gem.add_dependency "rest-client"
+
+  gem.add_development_dependency "bundler"
+  gem.add_development_dependency "rake"
+  gem.add_development_dependency "minitest"
 end
