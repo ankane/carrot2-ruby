@@ -13,8 +13,8 @@ class Carrot2Test < Minitest::Test
   end
 
   def test_bad_request
-    error = assert_raises { carrot2.request({}) }
-    assert_equal "Bad response code from Carrot2 server: 400", error.message
+    error = assert_raises(Carrot2::Error) { carrot2.request({}) }
+    assert_includes error.message, "Error 400"
   end
 
   def carrot2

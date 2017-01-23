@@ -4,6 +4,8 @@ require "net/http"
 require "json"
 
 class Carrot2
+  class Error < StandardError; end
+
   def initialize(url: nil)
     @url = url || ENV["CARROT2_URL"] || "http://localhost:8080"
 
@@ -37,7 +39,11 @@ class Carrot2
     if response.code == "200"
       JSON.parse(response.body)
     else
-      raise "Bad response code from Carrot2 server: #{response.code}"
+      body = response.body.to_s
+      # try to get reason from title
+      m = body.match(/<title>(.+)<\/title>/)
+      message = m ? m[1] : body
+      raise Carrot2::Error, message
     end
   end
 end

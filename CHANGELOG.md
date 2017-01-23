@@ -2,6 +2,7 @@
 
 - Added `request` method
 - Removed dependency on `rest-client`
+- Better error messages
 
 ## 0.1.0
 
