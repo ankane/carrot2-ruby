@@ -11,6 +11,7 @@ class Carrot2
 
     # add dcs/rest
     @url = "#{@url.sub(/\/\z/, "")}/dcs/rest"
+    @uri = URI.parse(@url)
   end
 
   def cluster(documents, language: "ENGLISH")
@@ -25,7 +26,6 @@ class Carrot2
     end
 
     request(
-      "dcs.output.format" => "JSON",
       "dcs.clusters.only" => true,
       "dcs.c2stream" => xml.target!,
       "MultilingualClustering.defaultLanguage" => language,
@@ -34,8 +34,7 @@ class Carrot2
   end
 
   def request(params)
-    uri = URI.parse(@url)
-    response = Net::HTTP.post_form(uri, params)
+    response = Net::HTTP.post_form(@uri, params.merge("dcs.output.format" => "JSON"))
     if response.code == "200"
       JSON.parse(response.body)
     else
