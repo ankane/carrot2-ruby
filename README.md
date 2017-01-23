@@ -73,7 +73,7 @@ This returns:
 
 Documents are numbered in the order provided, starting with 0.
 
-For other requests, use: [master]
+For other requests, use:
 
 ```ruby
 carrot2.request(
