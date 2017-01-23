@@ -1,3 +1,7 @@
+## 0.1.1 [unreleased]
+
+- Added `request` method
+
 ## 0.1.0
 
 - Added support for env var
