@@ -21,6 +21,8 @@ gem 'carrot2'
 
 ## How to Use
 
+To cluster documents, use:
+
 ```ruby
 documents = [
   "Sign up for an exclusive coupon.",
@@ -33,7 +35,7 @@ carrot2 = Carrot2.new
 carrot2.cluster(documents)
 ```
 
-returns
+This returns:
 
 ```ruby
 {
@@ -70,6 +72,16 @@ returns
 ```
 
 Documents are numbered in the order provided, starting with 0.
+
+For other requests, use: [master]
+
+```ruby
+carrot2.request(
+  "dcs.c2stream" => xml_str
+)
+```
+
+## Configuration
 
 To specify the Carrot2 server, set `ENV["CARROT2_URL"]` or use:
 
