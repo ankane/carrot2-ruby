@@ -1,6 +1,7 @@
 ## 0.1.1 [unreleased]
 
 - Added `request` method
+- Removed dependency on `rest-client`
 
 ## 0.1.0
 

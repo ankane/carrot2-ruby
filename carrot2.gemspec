@@ -16,7 +16,6 @@ Gem::Specification.new do |spec|
   spec.version       = Carrot2::VERSION
 
   spec.add_dependency "builder"
-  spec.add_dependency "rest-client"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"

@@ -1,6 +1,6 @@
 require "carrot2/version"
 require "builder"
-require "rest-client"
+require "net/http"
 require "json"
 
 class Carrot2
@@ -32,8 +32,9 @@ class Carrot2
   end
 
   def request(params)
-    response = RestClient.post(@url, params) { |response, request, result| response }
-    if response.code == 200
+    uri = URI.parse(@url)
+    response = Net::HTTP.post_form(uri, params)
+    if response.code == "200"
       JSON.parse(response.body)
     else
       raise "Bad response code from Carrot2 server: #{response.code}"
