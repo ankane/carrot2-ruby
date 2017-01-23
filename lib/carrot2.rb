@@ -13,7 +13,7 @@ class Carrot2
 
   def cluster(documents, language: "ENGLISH")
     xml = Builder::XmlMarkup.new
-    xml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+    xml.instruct! :xml, version: "1.0", encoding: "UTF-8"
     xml.searchresult do |s|
       documents.each do |document|
         s.document do |d|
