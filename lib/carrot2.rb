@@ -11,7 +11,7 @@ class Carrot2
     @url = "#{@url.sub(/\/\z/, "")}/dcs/rest"
   end
 
-  def cluster(documents, opts = {})
+  def cluster(documents, language: "ENGLISH")
     xml = Builder::XmlMarkup.new
     xml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
     xml.searchresult do |s|
@@ -22,13 +22,16 @@ class Carrot2
       end
     end
 
-    params = {
+    request(
       "dcs.output.format" => "JSON",
       "dcs.clusters.only" => true,
       "dcs.c2stream" => xml.target!,
-      "MultilingualClustering.defaultLanguage" => opts[:language] || "ENGLISH",
+      "MultilingualClustering.defaultLanguage" => language,
       multipart: true
-    }
+    )
+  end
+
+  def request(params)
     response = RestClient.post(@url, params) { |response, request, result| response }
     if response.code == 200
       JSON.parse(response.body)
