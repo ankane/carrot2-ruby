@@ -1,10 +1,10 @@
 # Carrot2
 
-Ruby client for [Carrot2](http://project.carrot2.org/) - the open-source document clustering server
+Ruby client for [Carrot2](https://project.carrot2.org/) - the open-source document clustering server
 
 ## Installation
 
-First, [download and run](http://project.carrot2.org/download-dcs.html) the Carrot2 server. It’s the one on [this page](https://github.com/carrot2/carrot2/releases) that begins with `carrot2-dcs`.
+First, [download and run](https://project.carrot2.org/download-dcs.html) the Carrot2 server. It’s the one on [this page](https://github.com/carrot2/carrot2/releases) that begins with `carrot2-dcs`.
 
 With Homebrew, use:
 
