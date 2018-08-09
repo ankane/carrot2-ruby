@@ -1,3 +1,7 @@
+## 0.2.1 [unreleased]
+
+- Added `open_timeout` and `read_timeout` options
+
 ## 0.2.0
 
 - Added `request` method

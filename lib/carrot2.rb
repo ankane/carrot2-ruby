@@ -6,12 +6,15 @@ require "json"
 class Carrot2
   class Error < StandardError; end
 
-  def initialize(url: nil)
+  def initialize(url: nil, open_timeout: 3, read_timeout: nil)
     @url = url || ENV["CARROT2_URL"] || "http://localhost:8080"
 
     # add dcs/rest
     @url = "#{@url.sub(/\/\z/, "")}/dcs/rest"
     @uri = URI.parse(@url)
+
+    @open_timeout = open_timeout
+    @read_timeout = read_timeout
   end
 
   def cluster(documents, language: "ENGLISH")
@@ -34,7 +37,19 @@ class Carrot2
   end
 
   def request(params)
-    response = Net::HTTP.post_form(@uri, params.merge("dcs.output.format" => "JSON"))
+    req = Net::HTTP::Post.new(@uri)
+    req.set_form_data(params.merge("dcs.output.format" => "JSON"))
+
+    options = {
+      use_ssl: @uri.scheme == "https"
+    }
+    options[:open_timeout] = @open_timeout if @open_timeout
+    options[:read_timeout] = @read_timeout if @read_timeout
+
+    response = Net::HTTP.start(@uri.hostname, @uri.port, options) do |http|
+      http.request(req)
+    end
+
     if response.code == "200"
       JSON.parse(response.body)
     else

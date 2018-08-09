@@ -89,6 +89,12 @@ To specify the Carrot2 server, set `ENV["CARROT2_URL"]` or use:
 Carrot2.new(url: "http://localhost:8080")
 ```
 
+Set timeouts [master]
+
+```ruby
+Carrot2.new(open_timeout: 3, read_timeout: 5)
+```
+
 ## Heroku
 
 Carrot2 can be easily deployed to Heroku thanks to support for [WAR deployment](https://devcenter.heroku.com/articles/war-deployment).
