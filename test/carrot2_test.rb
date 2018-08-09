@@ -25,7 +25,7 @@ class Carrot2Test < Minitest::Test
 
   def test_bad_request
     error = assert_raises(Carrot2::Error) { carrot2.request({}) }
-    assert_includes error.message, "Error"
+    assert_includes error.message, "Error 400"
   end
 
   private
