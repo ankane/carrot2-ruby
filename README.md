@@ -73,6 +73,14 @@ This returns:
 
 Documents are numbered in the order provided, starting with 0.
 
+Specify a language with:
+
+```ruby
+carrot2.cluster(documents, language: "FRENCH")
+```
+
+[All of these languages are supported](https://doc.carrot2.org/#section.faq.preliminaries.supported-languages)
+
 For other requests, use:
 
 ```ruby
