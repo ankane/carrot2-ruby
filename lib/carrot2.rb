@@ -17,7 +17,7 @@ class Carrot2
     @read_timeout = read_timeout
   end
 
-  def cluster(documents, language: "ENGLISH")
+  def cluster(documents, language: "English")
     xml = Builder::XmlMarkup.new
     xml.instruct! :xml, version: "1.0", encoding: "UTF-8"
     xml.searchresult do |s|
@@ -31,7 +31,7 @@ class Carrot2
     request(
       "dcs.clusters.only" => true,
       "dcs.c2stream" => xml.target!,
-      "MultilingualClustering.defaultLanguage" => language,
+      "MultilingualClustering.defaultLanguage" => language.upcase,
       multipart: true
     )
   end
