@@ -9,7 +9,7 @@ class Carrot2Test < Minitest::Test
       "This is completely unrelated to the other documents."
     ]
 
-    assert_cluster documents, ["Coupon", "Exclusive", "Other Topics"]
+    assert_cluster documents, ["Coupon", "Exclusive"]
   end
 
   def test_language
@@ -20,7 +20,7 @@ class Carrot2Test < Minitest::Test
       "Ceci n'a rien à voir avec les autres documents."
     ]
 
-    assert_cluster documents, ["Coupon", "Exclusif", "Other Topics"], language: "French"
+    assert_cluster documents, ["Coupon", "Exclusif"], language: "French"
   end
 
   def test_bad_request
@@ -35,6 +35,6 @@ class Carrot2Test < Minitest::Test
   end
 
   def assert_cluster(documents, expected, **options)
-    assert_equal expected, carrot2.cluster(documents, **options)["clusters"].map { |c| c["phrases"].first }
+    assert_equal expected + ["Other Topics"], carrot2.cluster(documents, **options)["clusters"].map { |c| c["phrases"].first }
   end
 end
