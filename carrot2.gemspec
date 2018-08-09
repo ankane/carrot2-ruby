@@ -1,19 +1,22 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path("../lib/carrot2/version", __FILE__)
+
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "carrot2/version"
 
 Gem::Specification.new do |spec|
-  spec.authors       = ["Andrew Kane"]
-  spec.email         = ["andrew@chartkick.com"]
-  spec.description   = "Ruby client for Carrot2"
+  spec.name          = "carrot2"
+  spec.version       = Carrot2::VERSION
   spec.summary       = "Ruby client for Carrot2"
   spec.homepage      = "https://github.com/ankane/carrot2"
+  spec.license       = "MIT"
 
-  spec.files         = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
-  spec.executables   = spec.files.grep(%r{^exe/}).map { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.name          = "carrot2"
-  spec.require_paths = ["lib"]
-  spec.version       = Carrot2::VERSION
+  spec.author        = "Andrew Kane"
+  spec.email         = "andrew@chartkick.com"
+
+  spec.files         = Dir["*.{md,txt}", "{lib}/**/*"]
+  spec.require_path  = "lib"
+
+  spec.required_ruby_version = ">= 2.2"
 
   spec.add_dependency "builder"
 
