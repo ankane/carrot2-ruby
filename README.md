@@ -2,6 +2,8 @@
 
 Ruby client for [Carrot2](https://project.carrot2.org/) - the open-source document clustering server
 
+[![Build Status](https://travis-ci.org/ankane/carrot2.svg?branch=master)](https://travis-ci.org/ankane/carrot2)
+
 ## Installation
 
 First, [download and run](https://project.carrot2.org/download-dcs.html) the Carrot2 server. It’s the one on [this page](https://github.com/carrot2/carrot2/releases) that begins with `carrot2-dcs`.
