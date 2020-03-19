@@ -13,5 +13,5 @@ else
 fi
 
 cd $CACHE_DIR
-dcs.sh &
+./dcs.sh &
 for i in {1..12}; do wget -O- -v http://127.0.0.1:8080/ && break || sleep 5; done
