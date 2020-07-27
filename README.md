@@ -80,6 +80,18 @@ Get a list of supported languages and algorithms with:
 carrot2.list
 ```
 
+Specify parameters with:
+
+```ruby
+parameters = {
+  preprocessing: {
+    phraseDfThreshold: 1,
+    wordDfThreshold: 1
+  }
+}
+carrot2.cluster(documents, parameters: parameters)
+```
+
 Specify [a template](https://carrot2.github.io/release/4.0.0/doc/dcs-templates/) with:
 
 ```ruby
