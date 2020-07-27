@@ -92,6 +92,8 @@ parameters = {
 carrot2.cluster(documents, parameters: parameters)
 ```
 
+See supported parameters for [Lingo](https://carrot2.github.io/release/4.0.0/doc/lingo-attributes/), [STC](https://carrot2.github.io/release/4.0.0/doc/stc-attributes/), and [Bisecting K-Means](https://carrot2.github.io/release/4.0.0/doc/kmeans-attributes/).
+
 Specify [a template](https://carrot2.github.io/release/4.0.0/doc/dcs-templates/) with:
 
 ```ruby
