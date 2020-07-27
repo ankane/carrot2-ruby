@@ -68,7 +68,7 @@ Specify a language with:
 carrot2.cluster(documents, language: "French")
 ```
 
-Specify [an algorithm](https://carrot2.github.io/release/4.0.0/doc/algorithms/) with:
+Specify an [algorithm](https://carrot2.github.io/release/4.0.0/doc/algorithms/) with:
 
 ```ruby
 carrot2.cluster(documents, algorithm: "Lingo")
@@ -94,7 +94,7 @@ carrot2.cluster(documents, parameters: parameters)
 
 See supported parameters for [Lingo](https://carrot2.github.io/release/4.0.0/doc/lingo-attributes/), [STC](https://carrot2.github.io/release/4.0.0/doc/stc-attributes/), and [Bisecting K-Means](https://carrot2.github.io/release/4.0.0/doc/kmeans-attributes/).
 
-Specify [a template](https://carrot2.github.io/release/4.0.0/doc/dcs-templates/) with:
+Specify a [template](https://carrot2.github.io/release/4.0.0/doc/dcs-templates/) with:
 
 ```ruby
 carrot2.cluster(documents, template: "lingo")
