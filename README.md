@@ -116,7 +116,7 @@ Carrot2.new(open_timeout: 3, read_timeout: 5)
 
 ## Heroku
 
-Carrot2 can be easily deployed to Heroku.
+The Carrot2 server can be deployed to Heroku with:
 
 ```sh
 cd path/to/carrot2/dcs
