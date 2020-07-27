@@ -44,7 +44,7 @@ class Carrot2
 
     # path
     path = "service/cluster"
-    path = "#{path}?template=#{URI.encode_www_form_component(template)}" if template
+    path = "#{path}?#{URI.encode_www_form(template: template)}" if template
 
     post(path, data)
   end
