@@ -114,6 +114,21 @@ Set timeouts
 Carrot2.new(open_timeout: 3, read_timeout: 5)
 ```
 
+## Heroku
+
+Carrot2 can be easily deployed to Heroku.
+
+```sh
+cd path/to/carrot2/dcs
+echo "web: ./dcs.sh -p \$PORT" > Procfile
+echo "java.runtime.version=11" > system.properties
+git init && git add . && git commit -m "First commit"
+heroku create --buildpack heroku/jvm
+git push heroku master
+```
+
+And set `ENV["CARROT2_URL"]` in your application.
+
 ## Resources
 
 - [Carrot2 REST API Basics](https://carrot2.github.io/release/4.0.0/doc/rest-api-basics/)
