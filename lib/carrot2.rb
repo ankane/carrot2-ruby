@@ -1,63 +1,68 @@
-require "carrot2/version"
-require "builder"
-require "net/http"
+# dependencies
 require "json"
+require "net/http"
+
+# modules
+require "carrot2/version"
 
 class Carrot2
   class Error < StandardError; end
 
+  HEADERS = {
+    "Content-Type" => "application/json",
+    "Accept" => "application/json"
+  }
+
   def initialize(url: nil, open_timeout: 3, read_timeout: nil)
-    @url = url || ENV["CARROT2_URL"] || "http://localhost:8080"
-
-    # add dcs/rest
-    @url = "#{@url.sub(/\/\z/, "")}/dcs/rest"
-    @uri = URI.parse(@url)
-
-    @open_timeout = open_timeout
-    @read_timeout = read_timeout
+    url ||= ENV["CARROT2_URL"] || "http://localhost:8080"
+    @uri = URI.parse(url)
+    @http = Net::HTTP.new(@uri.host, @uri.port)
+    @http.use_ssl = true if @uri.scheme == "https"
+    @http.open_timeout = open_timeout if open_timeout
+    @http.read_timeout = read_timeout if read_timeout
   end
 
-  def cluster(documents, language: "English")
-    xml = Builder::XmlMarkup.new
-    xml.instruct! :xml, version: "1.0", encoding: "UTF-8"
-    xml.searchresult do |s|
-      documents.each do |document|
-        s.document do |d|
-          d.title document
-        end
-      end
-    end
-
-    request(
-      "dcs.clusters.only" => true,
-      "dcs.c2stream" => xml.target!,
-      "MultilingualClustering.defaultLanguage" => language.upcase,
-      multipart: true
-    )
+  def list
+    get("service/list")
   end
 
-  def request(params)
-    req = Net::HTTP::Post.new(@uri)
-    req.set_form_data(params.merge("dcs.output.format" => "JSON"))
-
-    options = {
-      use_ssl: @uri.scheme == "https"
+  def cluster(documents, language: "English", algorithm: "Lingo", parameters: {})
+    data = {
+      language: language,
+      algorithm: algorithm,
+      parameters: parameters,
+      documents: documents.map { |v| v.is_a?(String) ? {field: v} : v }
     }
-    options[:open_timeout] = @open_timeout if @open_timeout
-    options[:read_timeout] = @read_timeout if @read_timeout
+    post("service/cluster", data)
+  end
 
-    response = Net::HTTP.start(@uri.hostname, @uri.port, options) do |http|
-      http.request(req)
+  private
+
+  def get(path)
+    handle_response do
+      @http.get("#{@uri.request_uri.chomp("/")}/#{path}", HEADERS)
+    end
+  end
+
+  def post(path, data)
+    handle_response do
+      @http.post("#{@uri.request_uri.chomp("/")}/#{path}", data.to_json, HEADERS)
+    end
+  end
+
+  def handle_response
+    begin
+      response = yield
+    rescue Errno::ECONNREFUSED => e
+      raise Carrot2::Error, e.message
     end
 
-    if response.code == "200"
-      JSON.parse(response.body)
-    else
-      body = response.body.to_s
-      # try to get reason from title
-      m = body.match(/<title>(.+)<\/title>/)
-      message = m ? m[1] : body
+    unless response.kind_of?(Net::HTTPSuccess)
+      body = JSON.parse(response.body) rescue {}
+      message = body["message"] || "Bad response: #{response.code}"
       raise Carrot2::Error, message
     end
+
+    JSON.parse(response.body)
   end
 end

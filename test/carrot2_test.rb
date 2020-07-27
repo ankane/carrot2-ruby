@@ -1,6 +1,11 @@
 require_relative "test_helper"
 
 class Carrot2Test < Minitest::Test
+  def test_list
+    list = carrot2.list
+    assert_equal ["Bisecting K-Means", "Lingo", "STC"], list["algorithms"].keys.sort
+  end
+
   def test_cluster
     documents = [
       "Sign up for an exclusive coupon.",
@@ -23,9 +28,15 @@ class Carrot2Test < Minitest::Test
     assert_phrases ["Coupon", "Exclusif"], documents, language: "French"
   end
 
-  def test_bad_request
-    error = assert_raises(Carrot2::Error) { carrot2.request({}) }
-    assert_includes error.message, "Error 400"
+  def test_hash_documents
+    documents = [
+      {text: "Sign up for an exclusive coupon."},
+      {text: "Exclusive members get a free coupon."},
+      {text: "Coupons are going fast."},
+      {text: "This is completely unrelated to the other documents."}
+    ]
+
+    assert_phrases ["Coupon", "Exclusive"], documents
   end
 
   private
@@ -35,6 +46,6 @@ class Carrot2Test < Minitest::Test
   end
 
   def assert_phrases(expected, documents, **options)
-    assert_equal expected + ["Other Topics"], carrot2.cluster(documents, **options)["clusters"].map { |c| c["phrases"].first }
+    assert_equal expected, carrot2.cluster(documents, **options)["clusters"].map { |c| c["labels"].first }
   end
 end
