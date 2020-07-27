@@ -31,9 +31,9 @@ class Carrot2Test < Minitest::Test
 
   def test_bad_template
     error = assert_raises(Carrot2::Error) do
-      carrot2.cluster(documents, template: "lingo?")
+      carrot2.cluster(documents, template: "lingo?&other")
     end
-    assert_equal "Template not available: lingo?", error.message
+    assert_equal "Template not available: lingo?&other", error.message
   end
 
   private
