@@ -68,7 +68,7 @@ Specify a language with:
 carrot2.cluster(documents, language: "French")
 ```
 
-Specify an algorithm with:
+Specify [an algorithm](https://carrot2.github.io/release/4.0.0/doc/algorithms/) with:
 
 ```ruby
 carrot2.cluster(documents, algorithm: "Lingo")
