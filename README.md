@@ -65,7 +65,7 @@ Documents are numbered in the order provided, starting with 0.
 Specify a language with:
 
 ```ruby
-carrot2.cluster(documents, language: "FRENCH")
+carrot2.cluster(documents, language: "French")
 ```
 
 Specify an algorithm with:
