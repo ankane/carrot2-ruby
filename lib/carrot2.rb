@@ -26,14 +26,21 @@ class Carrot2
     get("service/list")
   end
 
-  def cluster(documents, language: "English", algorithm: "Lingo", parameters: {})
+  def cluster(documents, language: nil, algorithm: nil, parameters: nil, template: nil)
+    unless template
+      language ||= "English"
+      algorithm ||= "Lingo"
+      parameters ||= {}
+    end
     data = {
-      language: language,
-      algorithm: algorithm,
-      parameters: parameters,
       documents: documents.map { |v| v.is_a?(String) ? {field: v} : v }
     }
-    post("service/cluster", data)
+    data[:language] = language if language
+    data[:algorithm] = algorithm if algorithm
+    data[:parameters] = parameters if parameters
+    path = "service/cluster"
+    path = "#{path}?#{URI.encode_www_form(template: template)}" if template
+    post(path, data)
   end
 
   private

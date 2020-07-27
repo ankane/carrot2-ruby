@@ -7,13 +7,6 @@ class Carrot2Test < Minitest::Test
   end
 
   def test_cluster
-    documents = [
-      "Sign up for an exclusive coupon.",
-      "Exclusive members get a free coupon.",
-      "Coupons are going fast.",
-      "This is completely unrelated to the other documents."
-    ]
-
     assert_phrases ["Coupon", "Exclusive"], documents
   end
 
@@ -29,20 +22,33 @@ class Carrot2Test < Minitest::Test
   end
 
   def test_hash_documents
-    documents = [
-      {text: "Sign up for an exclusive coupon."},
-      {text: "Exclusive members get a free coupon."},
-      {text: "Coupons are going fast."},
-      {text: "This is completely unrelated to the other documents."}
-    ]
-
     assert_phrases ["Coupon", "Exclusive"], documents
+  end
+
+  def test_template
+    assert_phrases ["Coupon", "Exclusive"], documents, template: "lingo"
+  end
+
+  def test_bad_template
+    error = assert_raises(Carrot2::Error) do
+      carrot2.cluster(documents, template: "lingo?")
+    end
+    assert_equal "Template not available: lingo?", error.message
   end
 
   private
 
   def carrot2
     @carrot2 ||= Carrot2.new
+  end
+
+  def documents
+    [
+      "Sign up for an exclusive coupon.",
+      "Exclusive members get a free coupon.",
+      "Coupons are going fast.",
+      "This is completely unrelated to the other documents."
+    ]
   end
 
   def assert_phrases(expected, documents, **options)
