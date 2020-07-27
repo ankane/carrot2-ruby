@@ -112,6 +112,10 @@ Set timeouts
 Carrot2.new(open_timeout: 3, read_timeout: 5)
 ```
 
+## Resources
+
+- [Carrot2 REST API Basics](https://carrot2.github.io/release/4.0.0/doc/rest-api-basics/)
+
 ## History
 
 View the [changelog](https://github.com/ankane/carrot2/blob/master/CHANGELOG.md)
