@@ -80,6 +80,12 @@ Get a list of supported languages and algorithms with:
 carrot2.list
 ```
 
+Specify [a template](https://carrot2.github.io/release/4.0.0/doc/dcs-templates/) with:
+
+```ruby
+carrot2.cluster(documents, template: "lingo")
+```
+
 ## Configuration
 
 To specify the Carrot2 server, set `ENV["CARROT2_URL"]` or use:
