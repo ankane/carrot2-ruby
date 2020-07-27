@@ -6,9 +6,7 @@ Ruby client for [Carrot2](https://github.com/carrot2/carrot2) - the open-source 
 
 ## Installation
 
-First, [download and run](https://github.com/carrot2/carrot2#installation) the Carrot2 server.
-
-With Homebrew, use:
+First, [download and run](https://github.com/carrot2/carrot2#installation) the Carrot2 server. With Homebrew, use:
 
 ```sh
 brew install carrot2
