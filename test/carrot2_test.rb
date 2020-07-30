@@ -43,6 +43,10 @@ class Carrot2Test < Minitest::Test
     assert_phrases ["Coupon", "Exclusive"], documents, template: "lingo"
   end
 
+  def test_template_bkmeans
+    assert_phrases ["Completely", "Fast"], documents, template: "bkmeans"
+  end
+
   def test_bad_template
     error = assert_raises(Carrot2::Error) do
       carrot2.cluster(documents, template: "lingo?&other=1")
