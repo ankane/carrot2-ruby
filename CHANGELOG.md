@@ -1,4 +1,4 @@
-## 0.3.0 (unreleased)
+## 0.3.0 (2020-07-29)
 
 - Added support for Carrot2 4
 - Dropped support for Carrot2 < 4
