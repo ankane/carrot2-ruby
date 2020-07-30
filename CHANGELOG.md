@@ -1,3 +1,8 @@
+## 0.3.0 (unreleased)
+
+- Added support for Carrot2 4
+- Dropped support for Carrot2 < 4
+
 ## 0.2.1 (2019-10-28)
 
 - Added `open_timeout` and `read_timeout` options

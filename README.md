@@ -1,14 +1,12 @@
 # Carrot2
 
-Ruby client for [Carrot2](https://project.carrot2.org/) - the open-source document clustering server
+Ruby client for [Carrot2](https://github.com/carrot2/carrot2) - the open-source document clustering server
 
 [![Build Status](https://travis-ci.org/ankane/carrot2.svg?branch=master)](https://travis-ci.org/ankane/carrot2)
 
 ## Installation
 
-First, [download and run](https://project.carrot2.org/download-dcs.html) the Carrot2 server. It’s the one on [this page](https://github.com/carrot2/carrot2/releases) that begins with `carrot2-dcs`.
-
-With Homebrew, use:
+First, [download and run](https://github.com/carrot2/carrot2#installation) the Carrot2 server. With Homebrew, use:
 
 ```sh
 brew install carrot2
@@ -20,6 +18,8 @@ Then add this line to your application’s Gemfile:
 ```ruby
 gem 'carrot2'
 ```
+
+The latest version works with Carrot2 4. For Carrot2 3, use version 0.2.1 and [this readme](https://github.com/ankane/carrot2/blob/v0.2.1/README.md).
 
 ## How to Use
 
@@ -41,35 +41,20 @@ This returns:
 
 ```ruby
 {
-  "processing-time-total"=>1,
-  "clusters"=> [
+  "clusters" => [
     {
-      "id"=>0,
-      "size"=>3,
-      "phrases"=>["Coupon"],
-      "score"=>0.06462323710740674,
-      "documents"=>[0, 1, 2],
-      "attributes"=>{"score"=>0.06462323710740674}
+      "labels" => ["Coupon"],
+      "documents" => [0, 1, 2],
+      "clusters" => [],
+      "score" => 0.06418006702675011
     },
     {
-      "id"=>1,
-      "size"=>2,
-      "phrases"=>["Exclusive"],
-      "score"=>0.05873148311034013,
-      "documents"=>[0, 1],
-      "attributes"=>{"score"=>0.05873148311034013}
-    },
-    {
-      "id"=>2,
-      "size"=>1,
-      "phrases"=>["Other Topics"],
-      "score"=>0.0,
-      "documents"=>[3],
-      "attributes"=>{"other-topics"=>true, "score"=>0.0}
+      "labels" => ["Exclusive"],
+      "documents" => [0, 1],
+      "clusters" => [],
+      "score" => 0.7040290701763807
     }
-  ],
-  "processing-time-algorithm"=>1,
-  "query"=>nil
+  ]
 }
 ```
 
@@ -78,17 +63,39 @@ Documents are numbered in the order provided, starting with 0.
 Specify a language with:
 
 ```ruby
-carrot2.cluster(documents, language: "FRENCH")
+carrot2.cluster(documents, language: "French")
 ```
 
-[All of these languages are supported](https://doc.carrot2.org/#section.faq.preliminaries.supported-languages)
-
-For other requests, use:
+Specify an [algorithm](https://carrot2.github.io/release/4.0.0/doc/algorithms/) with:
 
 ```ruby
-carrot2.request(
-  "dcs.c2stream" => xml_str
-)
+carrot2.cluster(documents, algorithm: "Lingo")
+```
+
+Get a list of supported languages and algorithms with:
+
+```ruby
+carrot2.list
+```
+
+Specify parameters with:
+
+```ruby
+parameters = {
+  preprocessing: {
+    phraseDfThreshold: 1,
+    wordDfThreshold: 1
+  }
+}
+carrot2.cluster(documents, parameters: parameters)
+```
+
+See supported parameters for [Lingo](https://carrot2.github.io/release/4.0.0/doc/lingo-attributes/), [STC](https://carrot2.github.io/release/4.0.0/doc/stc-attributes/), and [Bisecting K-Means](https://carrot2.github.io/release/4.0.0/doc/kmeans-attributes/).
+
+Specify a [template](https://carrot2.github.io/release/4.0.0/doc/dcs-templates/) with:
+
+```ruby
+carrot2.cluster(documents, template: "lingo")
 ```
 
 ## Configuration
@@ -105,19 +112,9 @@ Set timeouts
 Carrot2.new(open_timeout: 3, read_timeout: 5)
 ```
 
-## Heroku
+## Resources
 
-Carrot2 can be easily deployed to Heroku thanks to support for [WAR deployment](https://devcenter.heroku.com/articles/war-deployment).
-
-You can find the `.war` file in the `war` directory in the dcs download. Then run:
-
-```sh
-heroku plugins:install heroku-cli-deploy
-heroku create <app_name>
-heroku war:deploy carrot2-dcs.war --app <app_name>
-```
-
-And set `ENV["CARROT2_URL"]` in your application.
+- [Carrot2 REST API Basics](https://carrot2.github.io/release/4.0.0/doc/rest-api-basics/)
 
 ## History
 
