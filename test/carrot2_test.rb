@@ -10,6 +10,14 @@ class Carrot2Test < Minitest::Test
     assert_phrases ["Coupon", "Exclusive"], documents
   end
 
+  def test_hash_documents
+    assert_phrases ["Coupon", "Exclusive"], documents.map { |v| {doc: v} }
+  end
+
+  def test_algorithm
+    assert_phrases ["Completely", "Fast"], documents, algorithm: "Bisecting K-Means"
+  end
+
   def test_language
     documents = [
       "Inscrivez-vous pour un coupon exclusif",
@@ -21,8 +29,14 @@ class Carrot2Test < Minitest::Test
     assert_phrases ["Coupon", "Exclusif"], documents, language: "French"
   end
 
-  def test_hash_documents
-    assert_phrases ["Coupon", "Exclusive"], documents
+  def test_parameters
+    parameters = {
+      preprocessing: {
+        phraseDfThreshold: 1,
+        wordDfThreshold: 2
+      }
+    }
+    assert_phrases ["Exclusive"], documents, parameters: parameters
   end
 
   def test_template
