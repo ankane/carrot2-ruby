@@ -13,8 +13,9 @@ jobs:
     - run: |
         cd /tmp
         wget -q -O carrot2.zip https://github.com/carrot2/carrot2/releases/download/release%2F4.0.4/carrot2-4.0.4.zip
-        unzip carrot2.zip
+        unzip -q carrot2.zip
         cd carrot2-4.0.4
+        ls
         ./dcs.sh &
         for i in {1..12}; do wget -O- -v http://127.0.0.1:8080/ && break || sleep 5; done
     - run: bundle exec rake test
