@@ -11,6 +11,8 @@ jobs:
         ruby-version: 2.7
         bundler-cache: true
     - uses: actions/setup-java@v1
+      with:
+        java-version: 13
     - name: Install Carrot2
       run: |
         cd /tmp
