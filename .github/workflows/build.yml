@@ -4,6 +4,8 @@ jobs:
   build:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
+    env:
+      CARROT2_VERSION: 4.0.4
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
@@ -12,10 +14,9 @@ jobs:
         bundler-cache: true
     - run: |
         cd /tmp
-        wget -q -O carrot2.zip https://github.com/carrot2/carrot2/releases/download/release%2F4.0.4/carrot2-4.0.4.zip
-        unzip -q carrot2.zip
-        cd carrot2-4.0.4
-        ls
+        wget -q https://github.com/carrot2/carrot2/releases/download/release%2F$CARROT2_VERSION/carrot2-$CARROT2_VERSION.zip
+        unzip -q carrot2-$CARROT2_VERSION.zip
+        cd carrot2-$CARROT2_VERSION/dcs
         ./dcs.sh &
         for i in {1..12}; do wget -O- -v http://127.0.0.1:8080/ && break || sleep 5; done
     - run: bundle exec rake test
