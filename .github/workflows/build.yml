@@ -19,7 +19,7 @@ jobs:
         wget -q https://github.com/carrot2/carrot2/releases/download/release%2F$CARROT2_VERSION/carrot2-$CARROT2_VERSION.zip
         unzip -q carrot2-$CARROT2_VERSION.zip
         cd carrot2-$CARROT2_VERSION/dcs
-        ./dcs.sh &
+        ./dcs &
         for i in {1..12}; do wget -O- -v http://127.0.0.1:8080/ && break || sleep 5; done
       env:
         CARROT2_VERSION: 4.3.1
