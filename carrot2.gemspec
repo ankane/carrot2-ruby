@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name          = "carrot2"
   spec.version       = Carrot2::VERSION
   spec.summary       = "Ruby client for Carrot2"
-  spec.homepage      = "https://github.com/ankane/carrot2"
+  spec.homepage      = "https://github.com/ankane/carrot2-ruby"
   spec.license       = "MIT"
 
   spec.author        = "Andrew Kane"

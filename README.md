@@ -1,8 +1,8 @@
-# Carrot2
+# Carrot2 Ruby
 
 Ruby client for [Carrot2](https://github.com/carrot2/carrot2) - the open-source document clustering server
 
-[![Build Status](https://github.com/ankane/carrot2/workflows/build/badge.svg?branch=master)](https://github.com/ankane/carrot2/actions)
+[![Build Status](https://github.com/ankane/carrot2-ruby/workflows/build/badge.svg?branch=master)](https://github.com/ankane/carrot2-ruby/actions)
 
 ## Installation
 
@@ -124,16 +124,16 @@ View the [changelog](https://github.com/ankane/carrot2/blob/master/CHANGELOG.md)
 
 Everyone is encouraged to help improve this project. Here are a few ways you can help:
 
-- [Report bugs](https://github.com/ankane/carrot2/issues)
-- Fix bugs and [submit pull requests](https://github.com/ankane/carrot2/pulls)
+- [Report bugs](https://github.com/ankane/carrot2-ruby/issues)
+- Fix bugs and [submit pull requests](https://github.com/ankane/carrot2-ruby/pulls)
 - Write, clarify, or fix documentation
 - Suggest or add new features
 
 To get started with development:
 
 ```sh
-git clone https://github.com/ankane/carrot2.git
-cd carrot2
+git clone https://github.com/ankane/carrot2-ruby.git
+cd carrot2-ruby
 bundle install
 bundle exec rake test
 ```
