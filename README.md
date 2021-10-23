@@ -19,7 +19,7 @@ Then add this line to your application’s Gemfile:
 gem 'carrot2'
 ```
 
-The latest version works with Carrot2 4. For Carrot2 3, use version 0.2.1 and [this readme](https://github.com/ankane/carrot2/blob/v0.2.1/README.md).
+The latest version works with Carrot2 4. For Carrot2 3, use version 0.2.1 and [this readme](https://github.com/ankane/carrot2-ruby/blob/v0.2.1/README.md).
 
 ## How to Use
 
@@ -118,7 +118,7 @@ Carrot2.new(open_timeout: 3, read_timeout: 5)
 
 ## History
 
-View the [changelog](https://github.com/ankane/carrot2/blob/master/CHANGELOG.md)
+View the [changelog](https://github.com/ankane/carrot2-ruby/blob/master/CHANGELOG.md)
 
 ## Contributing
 
