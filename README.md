@@ -16,7 +16,7 @@ brew services start carrot2
 Then add this line to your application’s Gemfile:
 
 ```ruby
-gem 'carrot2'
+gem "carrot2"
 ```
 
 The latest version works with Carrot2 4. For Carrot2 3, use version 0.2.1 and [this readme](https://github.com/ankane/carrot2-ruby/blob/v0.2.1/README.md).
