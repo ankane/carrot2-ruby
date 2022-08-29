@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class Carrot2Test < Minitest::Test
+class ClientTest < Minitest::Test
   def test_list
     list = carrot2.list
     assert_equal ["Bisecting K-Means", "Lingo", "STC"], list["algorithms"].keys.sort
