@@ -57,7 +57,7 @@ class ClientTest < Minitest::Test
   private
 
   def carrot2
-    @carrot2 ||= Carrot2.new
+    @carrot2 ||= Carrot2::Client.new
   end
 
   def documents

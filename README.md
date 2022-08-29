@@ -33,7 +33,7 @@ documents = [
   "This is completely unrelated to the other documents."
 ]
 
-carrot2 = Carrot2.new
+carrot2 = Carrot2::Client.new
 carrot2.cluster(documents)
 ```
 
@@ -103,13 +103,13 @@ carrot2.cluster(documents, template: "lingo")
 To specify the Carrot2 server, set `ENV["CARROT2_URL"]` or use:
 
 ```ruby
-Carrot2.new(url: "http://localhost:8080")
+Carrot2::Client.new(url: "http://localhost:8080")
 ```
 
 Set timeouts
 
 ```ruby
-Carrot2.new(open_timeout: 3, read_timeout: 5)
+Carrot2::Client.new(open_timeout: 3, read_timeout: 5)
 ```
 
 ## Resources
