@@ -1,4 +1,4 @@
-## 0.4.0 (unreleased)
+## 0.4.0 (2022-08-28)
 
 - Dropped support for Ruby < 2.7
 
