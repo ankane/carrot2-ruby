@@ -4,19 +4,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.1
-        bundler-cache: true
-    - name: Install Carrot2
-      run: |
-        cd /tmp
-        wget -q https://github.com/carrot2/carrot2/releases/download/release%2F$CARROT2_VERSION/carrot2-$CARROT2_VERSION.zip
-        unzip -q carrot2-$CARROT2_VERSION.zip
-        cd carrot2-$CARROT2_VERSION/dcs
-        JAVA_HOME=$JAVA_HOME_17_X64 ./dcs &
-        for i in {1..12}; do wget -O- -v http://127.0.0.1:8080/ && break || sleep 5; done
-      env:
-        CARROT2_VERSION: 4.5.0
-    - run: bundle exec rake test
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+          bundler-cache: true
+      - name: Install Carrot2
+        run: |
+          cd /tmp
+          wget -q https://github.com/carrot2/carrot2/releases/download/release%2F$CARROT2_VERSION/carrot2-$CARROT2_VERSION.zip
+          unzip -q carrot2-$CARROT2_VERSION.zip
+          cd carrot2-$CARROT2_VERSION/dcs
+          JAVA_HOME=$JAVA_HOME_17_X64 ./dcs &
+          for i in {1..12}; do wget -O- -v http://127.0.0.1:8080/ && break || sleep 5; done
+        env:
+          CARROT2_VERSION: 4.5.0
+      - run: bundle exec rake test
