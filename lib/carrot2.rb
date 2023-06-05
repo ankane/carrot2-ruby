@@ -1,10 +1,10 @@
-# dependencies
+# stdlib
 require "json"
 require "net/http"
 
 # modules
-require "carrot2/client"
-require "carrot2/version"
+require_relative "carrot2/client"
+require_relative "carrot2/version"
 
 module Carrot2
   class Error < StandardError; end
