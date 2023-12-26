@@ -4,10 +4,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2
+          ruby-version: 3.3
           bundler-cache: true
       - name: Install Carrot2
         run: |
@@ -18,5 +18,5 @@ jobs:
           JAVA_HOME=$JAVA_HOME_17_X64 ./dcs &
           for i in {1..12}; do wget -O- -v http://127.0.0.1:8080/ && break || sleep 5; done
         env:
-          CARROT2_VERSION: 4.5.1
+          CARROT2_VERSION: 4.5.3
       - run: bundle exec rake test
