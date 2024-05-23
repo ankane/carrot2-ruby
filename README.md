@@ -2,7 +2,7 @@
 
 Ruby client for [Carrot2](https://github.com/carrot2/carrot2) - the open-source document clustering server
 
-[![Build Status](https://github.com/ankane/carrot2-ruby/workflows/build/badge.svg?branch=master)](https://github.com/ankane/carrot2-ruby/actions)
+[![Build Status](https://github.com/ankane/carrot2-ruby/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/carrot2-ruby/actions)
 
 ## Installation
 
